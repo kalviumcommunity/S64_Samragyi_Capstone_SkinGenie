@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { getRoutinesBySkinType } = require('../controllers/routineController');
-router.get('/:skinType', getRoutinesBySkinType);  // GET /api/routines/:skinType
+const { 
+  getRoutinesBySkinType,
+  createRoutine 
+} = require('../controllers/routineController'); 
+router.get('/:skinType', getRoutinesBySkinType);
+router.post('/', createRoutine);
 module.exports = router;
