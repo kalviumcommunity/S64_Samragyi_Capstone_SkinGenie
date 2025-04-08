@@ -10,3 +10,16 @@ exports.getRoutinesBySkinType = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
+exports.createRoutine = async (req, res) => {
+  try {
+    const { skinType, steps } = req.body;
+    if (!skinType || !steps) {
+      return res.status(400).json({ error: "skinType and steps are required" });
+    }
+    const newRoutine = await Routine.create({ skinType, steps });
+    res.status(201).json(newRoutine);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+};
