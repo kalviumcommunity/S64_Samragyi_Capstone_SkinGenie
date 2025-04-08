@@ -14,10 +14,19 @@ exports.getRoutinesBySkinType = async (req, res) => {
 exports.createRoutine = async (req, res) => {
   try {
     const { skinType, steps } = req.body;
-    if (!skinType || !steps) {
+    
+    // Improved validation (4 extra lines)
+    if (!skinType?.trim() || !steps) 
       return res.status(400).json({ error: "skinType and steps are required" });
-    }
-    const newRoutine = await Routine.create({ skinType, steps });
+    if (!Array.isArray(steps))
+      return res.status(400).json({ error: "steps must be an array" });
+    if (steps.some(step => !step?.trim()))
+      return res.status(400).json({ error: "steps cannot be empty" });
+
+    const newRoutine = await Routine.create({ 
+      skinType: skinType.trim(),  // Trimmed input
+      steps: steps.map(step => step.trim()) 
+    });
     res.status(201).json(newRoutine);
   } catch (err) {
     res.status(500).json({ error: "Server error" });
