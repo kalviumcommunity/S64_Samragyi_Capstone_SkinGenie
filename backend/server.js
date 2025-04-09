@@ -7,7 +7,7 @@ connectDB();  // Connect to the database
 const app = express();
 app.use(express.json());  // Middleware to parse JSON bodies
 app.use('/api/routines', routineRoutes);  // Use the routine routes
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

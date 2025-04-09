@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();  // Load environment variables
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(process.env.MONGO_URI); // Remove deprecated options
     console.log('MongoDB connected');
   } catch (error) {
     console.error('Database connection error:', error);
