@@ -58,6 +58,6 @@ exports.updateRoutine = async (req, res) => {
     }
     res.json(updatedRoutine); 
   } catch (err) {
-    res.status(500).json({ error: err.message || "Server error" });
+    res.status(500).json({ error: "Server error" });
   }
 };
