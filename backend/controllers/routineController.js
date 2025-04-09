@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Routine = require('../models/routine');  // Import the routine model
+const Routine = require('../models/routine'); 
 exports.getRoutinesBySkinType = async (req, res) => {
   try {
     const routines = await Routine.find({ skinType: req.params.skinType });
@@ -36,18 +36,12 @@ exports.updateRoutine = async (req, res) => {
   try {
     const { id } = req.params;
     const { skinType, steps } = req.body;
-
-    // 1. Validate ID format (prevent CastError)
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ error: "Invalid routine ID" }); // JSON response
     }
-
-    // 2. Validate input (mirroring your POST API)
     if (!skinType?.trim() || !Array.isArray(steps)) {
       return res.status(400).json({ error: "skinType and steps are required" });
     }
-
-    // 3. Update with validation
     const updatedRoutine = await Routine.findByIdAndUpdate(
       id,
       { 
@@ -55,20 +49,15 @@ exports.updateRoutine = async (req, res) => {
         steps: steps.map(step => step.trim()) 
       },
       { 
-        new: true,       // Return updated document
-        runValidators: true // Validate against schema
+        new: true,      
+        runValidators: true
       }
     );
-
-    // 4. Handle missing document
     if (!updatedRoutine) {
-      return res.status(404).json({ error: "Routine not found" }); // JSON response
+      return res.status(404).json({ error: "Routine not found" }); 
     }
-
-    res.json(updatedRoutine); // 200 OK with updated data
-
+    res.json(updatedRoutine); 
   } catch (err) {
-    console.error('Update routine error:', err); 
-    res.status(500).json({ error: err.message || "Server error" });
+    res.status(500).json({ "Server error" });
   }
 };
