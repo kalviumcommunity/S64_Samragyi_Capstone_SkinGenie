@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -22,9 +21,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 6,
-  }
+  },
+  skinType: {
+    type: String,
+    enum: ['Oily', 'Dry', 'Combination', 'Sensitive', 'Normal']
+  },
+  recommendedRoutines: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Routine'
+  }]
 }, { timestamps: true });
-
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next(); 
   try {
@@ -35,6 +41,5 @@ userSchema.pre('save', async function (next) {
     next(err);
   }
 });
-
 const User = mongoose.model('User', userSchema);
 module.exports = User;
