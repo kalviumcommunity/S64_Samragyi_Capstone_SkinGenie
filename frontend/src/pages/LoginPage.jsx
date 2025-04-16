@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
+import '../styles/LoginPage.css';
+import { Link } from 'react-router-dom';
 
 function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login submitted', { email, password });
-  };
-
   return (
-    <div className="auth-form">
-      <h2>Welcome Back!</h2>
-      <p>Your skin deserves the best – and so do you.</p>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Your Mail Id:
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        </label>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
-        <button type="submit">LOGIN</button>
-        <p>
-          Don’t have account yet? <a href="/signup">Signup</a>
+    <div className="login-container">
+      <div className="login-form">
+        <h2>Welcome Back !</h2>
+        <p>Your skin deserves the best - and so do you.</p>
+        <input type="email" placeholder="Your Mail Id" />
+        <input type="password" placeholder="Password" />
+        <button>LOGIN</button>
+        <p className="signup-link">
+          Don't have account yet? <Link to="/signup">Signup</Link>
         </p>
-      </form>
+      </div>
     </div>
   );
 }
