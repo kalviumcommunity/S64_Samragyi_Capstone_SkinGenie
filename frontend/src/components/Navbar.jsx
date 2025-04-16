@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
-import '../styles/Navbar.css'; // Updated import path
+import { NavLink } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 function Navbar() {
-  const [activeItem, setActiveItem] = useState('HOME');
-  const menuItems = ['HOME', 'ABOUT US', 'PRODUCT REVIEW', 'QUIZ'];
+  const menuItems = [
+    { name: 'HOME', path: '/' },
+    { name: 'ABOUT US', path: '/about' },
+    { name: 'PRODUCT REVIEW', path: '/product-review' },
+    { name: 'QUIZ', path: '/quiz' },
+  ];
 
   return (
     <div className="container">
       <nav className="navbar">
+        <div className='logo'>
+          <img src="\logo.png" alt="SkinGenie Logo" className="logo-icon" />
+        </div>
         <div className="menu">
-          {menuItems.map(item => (
-            <button
-              key={item}
-              onClick={() => setActiveItem(item)}
-              className={activeItem === item ? 'menu-item active' : 'menu-item'}
+          {menuItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className="menu-item"
+              activeClassName="active"
             >
-              {item}
-            </button>
+              {item.name}
+            </NavLink>
           ))}
         </div>
       </nav>
-      <div className="content">
-        <h1>Welcome to SkinGenie</h1>
-        <p>Your personalized skincare companion.</p>
-      </div>
     </div>
   );
 }
