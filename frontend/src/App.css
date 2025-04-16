@@ -2,7 +2,5 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-image: linear-gradient(to right, #ffe2f0, #fff);
   }
-*{
-  height: fit-content;
-}

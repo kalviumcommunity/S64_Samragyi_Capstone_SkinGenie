@@ -1,91 +1,130 @@
 .about-us-container {
-  background: linear-gradient(to right, #ffe2e2, #ffffff);
-  border-radius: 10px 10px 0 0;
+  background: transparent;
+  border-radius: 0; /* Remove border-radius */
   text-align: center;
   font-family: 'Arial', sans-serif;
   position: relative;
-  margin-top: 0;
-  padding: 40px 20px;
+  margin: 0; /* Remove margin */
+  padding: 0; /* Remove padding */
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh; 
 }
 
 .about-us-container h1 {
-  color: #333;
+  color: black;
   margin-bottom: 20px;
-  font-size: 2.5em;
+  font-size: 3.0em;
+  padding-top: 40px; /* Add padding to top */
 }
 
 .content-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 400px;
-  row-gap: 50px;
-  margin-top: 30px;
-  width: 100%;
-  max-width: 900px;
+  column-gap: 550px; /* Reduce column gap */
+  row-gap: 20px; /* Reduce row gap */
+  margin-top: 0; /* Remove top margin */
+
+  /* width: 80%;
+  max-width: 800px; */
   margin-left: auto;
   margin-right: auto;
   align-items: center;
+  padding: 20px;
 }
 
 .feature {
   text-align: center;
-  background: rgba(255, 240, 240, 0.9);
-  border-radius: 8px;
-  padding: 20px;
-  transition: transform 0.3s, box-shadow 0.3s;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: none; /* Remove background */
+  border-radius: 0; /* Remove border-radius */
+  padding: 0; /* Remove padding */
+  transition: none; /* Remove transition */
+  box-shadow: none; /* Remove box-shadow */
 }
 
 .feature:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform: none; /* Remove transform */
+  box-shadow: none; /* Remove box-shadow */
 }
 
 .feature img {
-  width: 60px;
+  width: 50px; /* Adjust image size */
   height: auto;
-  margin-bottom: 15px;
+  margin-bottom: 10px; 
 }
 
 .feature h3 {
-  color: #555;
-  font-size: 1.6em;
-  margin-bottom: 10px;
+  color: black;
+  font-size: 1.2em; /* Adjust font size */
+  margin-bottom: 5px; /* Reduce margin */
 }
 
 .feature p {
-  color: #777;
-  font-size: 1em;
-  line-height: 1.6;
+  color: black;
+  font-size: 0.9em; /* Adjust font size */
+  line-height: 1.4; /* Adjust line height */
 }
 
-/* Center image adjustments */
 .center-image {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 55%;
-  transform: translateY(-50%);
-  width: 100%;
+  position: relative; /* Change to relative */
+  left: auto; /* Remove left */
+  right: auto; /* Remove right */
+  bottom: 400px; /* Remove top */
+  transform: none; /* Remove transform */
+  width: 100%; /* Adjust width */
   display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none; /* Allows clicking on elements behind the image */
+  pointer-events: auto; /* Restore pointer events */
+  margin-bottom: 20px;
 }
 
 .center-image::before,
 .center-image::after {
-  content: '';
-  flex: 1;
+  display: none; /* Hide pseudo-elements */
 }
 
 .center-image img {
-  width: 300px;
-  height: 300px;
-  border-radius: 25%;
+  width: 400px; /* Adjust image size */
+  height: 400px; /* Adjust image size */
+  border-radius: 25%; /* Make it a circle */
   object-fit: cover;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Add device mockup */
+.device-mockup {
+  background: url('/laptop-mockup.png') no-repeat center/contain;
+  width: 90%;
+  max-width: 1200px;
+  height: 0;
+  padding-bottom: 60%; /* Adjust this value to fit the content */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Inner content wrapper */
+.content-wrapper {
+  position: absolute;
+  top: 12%; /* Adjust these values to position content */
+  left: 10%;
+  width: 80%;
+  height: 75%;
+  background: linear-gradient(to bottom, #fff, #f8c6c6);
+  border-radius: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Move h1 inside content-wrapper */
+.device-mockup .content-wrapper h1 {
+    padding-top: 0;
 }
 
 @media (max-width: 768px) {
@@ -95,10 +134,12 @@
   }
 
   .center-image {
-    position: relative;
-    transform: none;
-    top: auto;
-    width: 180px;
+    width: 100%; /* Adjust width */
     margin: 20px auto;
+  }
+
+  .center-image img {
+    width: 150px; /* Adjust image size */
+    height: 150px; /* Adjust image size */
   }
 }
