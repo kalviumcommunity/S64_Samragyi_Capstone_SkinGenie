@@ -3,7 +3,6 @@ import '../styles/LoginPage.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from '../axios.config';
-
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -12,7 +11,6 @@ function LoginPage() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!email.trim() || !password) {
       setError("Both fields are required");
       return;
@@ -26,9 +24,13 @@ function LoginPage() {
       });
 
       if (response.status === 200) {
-        console.log("Login successful");
-        navigate('/dashboard'); // ✅ or wherever you want to redirect after login
-      }
+        const { token } = response.data;
+        if (token) {
+          localStorage.setItem('token', token); // Store JWT token
+          console.log('Stored JWT token:', localStorage.getItem('token'));
+        }
+        navigate('/quiz'); // Redirect after login
+      }      
     } catch (err) {
       console.error("Login error:", err);
       const message = err.response?.data?.message || "An error occurred during login";
@@ -37,7 +39,6 @@ function LoginPage() {
       setLoading(false);
     }
   };
-
   return (
     <div className="login-outer-container">
       <Navbar />
@@ -82,5 +83,4 @@ function LoginPage() {
     </div>
   );
 }
-
 export default LoginPage;
