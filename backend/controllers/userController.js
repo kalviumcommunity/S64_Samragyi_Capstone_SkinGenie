@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt'); // Still needed for login
 const { validationResult } = require('express-validator');
+const jwt = require('jsonwebtoken');
 
 exports.createUser = async (req, res) => {
   const errors = validationResult(req);
@@ -43,8 +44,15 @@ exports.loginUser = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid credentials' });
     }
+    const token = jwt.sign(
+      { userId: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' }
+    );
+
     res.json({
       message: 'Login successful',
+      token, 
       user: {
         id: user._id,
         name: user.name,
@@ -56,7 +64,6 @@ exports.loginUser = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await User.find().select('-password'); // Exclude password

@@ -14,7 +14,7 @@ function SignupPage() {
   const navigate = useNavigate();
   const validateEmail = (email) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !email.trim() || !password || !confirmPassword) {
@@ -31,15 +31,21 @@ function SignupPage() {
     }
     setLoading(true);
     setError('');
-
+  
     try {
       const response = await axios.post('/signup', {
         name: name.trim(),
         email: email.trim(),
         password,
       });
-
-      if (response.status === 201) {
+  
+      // If the backend returns a token on signup:
+      const { token } = response.data;
+      if (token) {
+        localStorage.setItem('token', token);
+        navigate('/quiz'); // Redirect to Quiz Intro page after signup
+      } else if (response.status === 201) {
+        // If no token is returned, fallback to login page
         navigate('/login');
       }
     } catch (err) {
@@ -50,7 +56,7 @@ function SignupPage() {
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
