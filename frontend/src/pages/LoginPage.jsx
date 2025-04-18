@@ -27,7 +27,6 @@ function LoginPage() {
         const { token } = response.data;
         if (token) {
           localStorage.setItem('token', token); // Store JWT token
-          console.log('Stored JWT token:', localStorage.getItem('token'));
         }
         navigate('/quiz'); // Redirect after login
       }      
