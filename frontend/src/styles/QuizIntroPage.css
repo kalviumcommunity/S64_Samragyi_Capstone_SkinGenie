@@ -1,0 +1,90 @@
+/* General container styles */
+.quiz-intro-container {
+    font-family: Arial, sans-serif;
+}
+
+/* Main content area: image on left, text on right */
+.main-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    gap: 100px;
+    position: relative; /* To adjust for overlapping effect */
+    z-index: 1; /* Ensure it is above background */
+}
+
+.right-image {
+    width: 450px;
+    height: 625px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+/* Text section styles (right side) */
+.text-section {
+    max-width: 50%;
+    padding: 20px;
+    z-index: 2; /* Ensure it is above background */
+    margin-bottom: 100px;
+}
+
+/* Text styles */
+.text-section h1 {
+    color: black;
+    font-size: 2em;
+    margin-bottom: 50px;
+    font-family: 'Playfair Display', serif;
+}
+/* Second heading (h3) styles */
+.text-section h3 {
+    color: black;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 30px;
+    font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* Paragraph before steps list */
+.text-section p {
+    color: black;
+    font-size: 1.1em;
+    font-style: italic;
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Steps list styles */
+.steps ul {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.steps li {
+    color: black;
+    font-size: 1em;
+    line-height: 1.4;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* "Take Quiz" button styles */
+.text-section button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    margin-top: 40px;
+}
+
+.text-section button:hover {
+    background-color: white;
+    color: black;
+}
