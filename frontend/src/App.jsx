@@ -6,27 +6,54 @@ import ProductReview from './pages/ProductReview';
 import QuizPage from './pages/QuizPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import QuizIntroPage from './pages/QuizIntroPage';
 import RoutinePage from './pages/RoutinePage';
-import CommunityPage from './pages/CommunityPage';
+import PrivateRoute from './components/PrivateRoute'; // Adjust path as needed
 import './App.css';
-
-function App() {
+function AppRouter() {
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/product-review" element={<ProductReview />} />
-          <Route path="/quiz" element={<QuizPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/routine" element={<RoutinePage />} />
-          <Route path="/community" element={<CommunityPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        {/* Protected routes */}
+        <Route
+          path="/product-review"
+          element={
+            <PrivateRoute>
+              <ProductReview />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/routine"
+          element={
+            <PrivateRoute>
+              <RoutinePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/quiz"
+          element={
+            <PrivateRoute>
+              <QuizIntroPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/quiz-page"
+          element={
+            <PrivateRoute>
+              <QuizPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
-
-export default App;
+export default AppRouter;
