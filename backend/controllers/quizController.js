@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const Routine = require('../models/routine');
+const QuizQuestion = require('../models/quizQuestion');
+
 exports.submitQuiz = async (req, res) => {
   try {
     const { skinType } = req.body;
@@ -35,5 +37,25 @@ exports.getUserRoutines = async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
+  }
+};
+// Fetch all quiz questions
+exports.getQuizQuestions = async (req, res) => {
+  try {
+    const questions = await QuizQuestion.find();
+    res.status(200).json(questions);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+// (Optional) Add a function to create quiz questions for admin use
+exports.createQuizQuestion = async (req, res) => {
+  try {
+    const { question, options } = req.body;
+    const newQuestion = await QuizQuestion.create({ question, options });
+    res.status(201).json(newQuestion);
+  } catch (err) {
+    res.status(500).json({ error: 'Server error' });
   }
 };

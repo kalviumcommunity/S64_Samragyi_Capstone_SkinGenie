@@ -1,0 +1,145 @@
+.quiz-page {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.quiz-container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 800px;
+    box-sizing: border-box;
+    height: 500px;
+}
+
+.quiz-header {
+    margin-bottom: 20px;
+}
+
+.quiz-progress-bar {
+    background-color: #f4bbbb;
+    border-radius: 10px;
+    height: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.quiz-progress {
+    background-color: #000;
+    border-radius: 10px;
+    height: 100%;
+    transition: width 0.3s ease-in-out;
+}
+
+.quiz-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.quiz-question {
+    margin-bottom: 20px;
+}
+
+.quiz-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.quiz-options li {
+    margin-bottom: 10px;
+}
+
+.quiz-option-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    color: #333;
+    padding: 12px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.quiz-option-btn:hover,
+.quiz-option-btn.selected {
+    background-color: #e4c6c6;
+    color: #000;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    position: relative;
+}
+
+.quiz-nav-button {
+    background-color: palevioletred;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px 20px;
+    transition: color 0.3s;
+    font-weight: 600;
+}
+
+.quiz-nav-button:hover {
+    color: white;
+    background-color: black;
+}
+
+/* Navigation button positioning */
+.back-button {
+    text-align: left;
+}
+
+.next-button {
+    text-align: right;
+}
+
+.quiz-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically align items */
+    margin-top: 20px;
+    position: relative; /* Needed for absolute positioning */
+}
+
+.back-button {
+    text-align: left; /* Align Back button to the left */
+}
+
+.submit-button {
+    position: absolute; /* Absolute positioning */
+    left: 50%; /* Center horizontally */
+    bottom: -40px; /* Position at the bottom */
+    transform: translateX(-50%); /* Center the button */
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 300px;
+    font-size: larger;
+}
+
+.submit-button:hover {
+    background-color: palevioletred;
+    color: white;
+}
