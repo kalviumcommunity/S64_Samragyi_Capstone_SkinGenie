@@ -1,24 +1,40 @@
-/* Navbar styling */
-.navbar {
+/* Navbar container styling */
+#navbar-container {
   width: 100%;
   height: 85px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* Navbar styling */
+#navbar {
+  width: 90%;
+  height: 100%;
+  display: flex;
+  align-items: center; /* Ensures vertical alignment */
+  justify-content: space-between; /* Spreads out logo and menu */
   background: transparent;
   padding: 1rem 0;
 }
 
-.logo-icon {
-  width: 250px;
-  height: 250px;
-  margin-left: 6rem; /* Changed to rem unit */
-  margin-top: 1rem; /* Resetting top margin */
+/* Logo styling */
+#logo {
   display: flex;
   justify-self: flex-start;
 }
 
+#logo-icon {
+  width: 250px;
+  height: 250px;
+  margin-left: 6rem;
+  margin-top: 1rem;
+  object-fit: contain; /* Ensures the image scales properly */
+  display: block;
+}
+
 /* Menu styling */
-.menu {
+#menu {
   position: absolute;
   top: 20px;
   left: 50%;
@@ -30,8 +46,10 @@
   border-radius: 9999px;
 }
 
-/* Menu items styling */
-.menu-item {
+#menu-item-home,
+#menu-item-about-us,
+#menu-item-product-review,
+#menu-item-quiz {
   padding: 0.5rem 1.5rem;
   margin: 0 0.5rem;
   font-size: 0.875rem;
@@ -45,16 +63,24 @@
   text-decoration: none;
 }
 
-.menu-item:hover {
-  color: #eee; /* Lighter text on hover */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+#menu-item-home:hover,
+#menu-item-about-us:hover,
+#menu-item-product-review:hover,
+#menu-item-quiz:hover {
+  color: #eee;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-.menu-item.active {
+#menu-item-home.active,
+#menu-item-about-us.active,
+#menu-item-product-review.active,
+#menu-item-quiz.active {
   background-color: grey;
   color: white;
 }
-.logout-button{
+
+/* Logout button styling */
+#logout-button {
   padding: 0.5rem 1.5rem;
   margin: 0 0.5rem;
   font-size: 0.875rem;
@@ -66,6 +92,9 @@
   border: none;
   cursor: pointer;
   text-decoration: none;
-  color: #eee; /* Lighter text on hover */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
+}
+
+#logout-button:hover {
+  color: #eee;
+  background-color: rgba(255, 255, 255, 0.1);
 }

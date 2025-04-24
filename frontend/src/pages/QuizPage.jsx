@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import '../styles/QuizPage.css';
@@ -7,11 +7,12 @@ function QuizPage() {
     const [questions, setQuestions] = useState([]);
     const [current, setCurrent] = useState(0);
     const [loading, setLoading] = useState(true);
-    const [selectedOption, setSelectedOption] = useState(null);
-    const navigate = useNavigate(); // Initialize useNavigate
+    const [selectedOptions, setSelectedOptions] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:8000/quiz/questions')
+        const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'; // Use Vite's `import.meta.env`
+        fetch(`${API_URL}/quiz/questions`)
             .then((res) => res.json())
             .then((data) => {
                 setQuestions(data);
@@ -20,33 +21,34 @@ function QuizPage() {
             .catch((err) => {
                 console.error("Fetch error:", err);
                 setLoading(false);
+                alert("Failed to load quiz questions. Please try again later.");
             });
     }, []);
 
-    const handleOptionClick = (index) => {
-        setSelectedOption(index);
-    };
+    const handleOptionClick = useCallback((index) => {
+        setSelectedOptions({ ...selectedOptions, [current]: index });
+    }, [current, selectedOptions]);
 
-    const handleNext = () => {
-        if (selectedOption === null) return;
-        setSelectedOption(null);
+    const handleNext = useCallback(() => {
+        if (selectedOptions[current] === undefined) return;
         if (current < questions.length - 1) {
             setCurrent(current + 1);
         }
-    };
+    }, [current, selectedOptions]);
 
-    const handleSubmit = () => {
-        if (selectedOption === null) return;
-        // Add logic to handle submission here (e.g., send data to backend)
-        navigate('/routine'); // Redirect to the routine page
-    };
-
-    const handleBack = () => {
-        setSelectedOption(null);
+    const handleBack = useCallback(() => {
         if (current > 0) {
             setCurrent(current - 1);
         }
-    };
+    }, [current]);
+
+    const handleSubmit = useCallback(() => {
+        if (selectedOptions[current] === undefined) return;
+
+        const selectedOptionType = questions[current].options[selectedOptions[current]].type;
+        localStorage.setItem("skinType", selectedOptionType);
+        navigate('/routine');
+    }, [current, questions, selectedOptions, navigate]);
 
     const progress = questions.length > 0 ? ((current + 1) / questions.length) * 100 : 0;
     const isLastQuestion = current === questions.length - 1;
@@ -60,10 +62,19 @@ function QuizPage() {
         );
     }
 
+    if (questions.length === 0) {
+        return (
+            <>
+                <Navbar />
+                <div className="quiz-loading">No questions available. Please try again later.</div>
+            </>
+        );
+    }
+
     const question = questions[current];
 
     return (
-        <div className='quiz-all'>
+        <div className="quiz-all">
             <Navbar />
             <div className="quiz-page">
                 <div className="quiz-container">
@@ -79,8 +90,9 @@ function QuizPage() {
                             {question?.options.map((opt, index) => (
                                 <li key={index}>
                                     <button
-                                        className={`quiz-option-btn ${selectedOption === index ? 'selected' : ''}`}
+                                        className={`quiz-option-btn ${selectedOptions[current] === index ? 'selected' : ''}`}
                                         onClick={() => handleOptionClick(index)}
+                                        aria-pressed={selectedOptions[current] === index}
                                     >
                                         {opt.text}
                                     </button>
@@ -107,7 +119,7 @@ function QuizPage() {
                             <button
                                 className="quiz-nav-button next-button"
                                 onClick={handleNext}
-                                disabled={selectedOption === null}
+                                disabled={selectedOptions[current] === undefined}
                             >
                                 Next
                             </button>

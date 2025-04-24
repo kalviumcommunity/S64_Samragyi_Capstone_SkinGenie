@@ -6,14 +6,12 @@ const routineSchema = new mongoose.Schema({
     trim: true,
     enum: ['Oily', 'Dry', 'Combination', 'Sensitive', 'Normal'] 
   },
-  steps: { 
-    type: [String], 
-    required: true,
-    validate: {
-      validator: v => v.length > 0 && v.every(s => s?.trim()),
-      message: 'Steps must be a non-empty array of strings'
-    }
-  }
+steps: [{
+  type: mongoose.Schema.Types.ObjectId, // Use ObjectId
+  ref: 'Product', // Reference Product model
+  required: true
+}]
+
 }, { timestamps: true });
 const Routine = mongoose.model('Routine', routineSchema);
 module.exports = Routine;
