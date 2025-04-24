@@ -6,7 +6,7 @@ SkinGenie is a smart skincare web app designed to personalize and simplify skinc
 **Key Features:**  
 
 1. **Skincare Type Quiz**  
-- 10-question intelligent quiz  
+- Question intelligent quiz  
 - Evaluates skin texture, sensitivity, habits, and environment  
 - Classifies into: Oily, Dry, Combination, Sensitive  
 - Generates tailored skincare routines  

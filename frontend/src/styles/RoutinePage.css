@@ -1,0 +1,85 @@
+.routine-page {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+/* Scoped container styles */
+.routine-page .routine-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+/* AM and PM routine sections */
+.routine-page .am-routine,
+.routine-page .pm-routine {
+  width: 45%;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Product card styling */
+.routine-page .product-card {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+/* Product image styling */
+.routine-page .product-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Upload section */
+.routine-page .upload-section {
+  margin-top: 10px;
+}
+
+/* Upload button styling */
+.routine-page .upload-button {
+  background-color: #5cb85c;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.routine-page .upload-button:hover {
+  background-color: #449d44;
+}
+
+/* Message container */
+.routine-page .message {
+  margin-top: 20px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.routine-page .message.success {
+  background-color: #dff0d8;
+  color: #3c763d;
+}
+
+.routine-page .message.error {
+  background-color: #f2dede;
+  color: #a94442;
+}
+
+/* Ensure no interference with Navbar */
+.routine-page * {
+  box-sizing: border-box; /* Prevent sizing conflicts */
+}
+
+.routine-page {
+  position: relative; /* Isolate from Navbar */
+  z-index: 0; /* Ensure it doesn't overlap Navbar */
+}
