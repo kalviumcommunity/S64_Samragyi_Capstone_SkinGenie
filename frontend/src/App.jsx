@@ -13,48 +13,49 @@ import './App.css';
 
 function AppRouter() {
   return (
-      <Router>
-        <Routes>
-          {/* Public routes */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          {/* Protected routes */}
-          <Route
-            path="/product-review"
-            element={
-              <PrivateRoute>
-                <ProductReview />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/routine"
-            element={
-              <PrivateRoute>
-                <RoutinePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/quiz"
-            element={
-              <PrivateRoute>
-                <QuizIntroPage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/quiz-page"
-            element={
-              <PrivateRoute>
-                <QuizPage />
-              </PrivateRoute>
-            }
-          />
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        {/* Public routes */}
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+
+        {/* Protected routes */}
+        <Route
+          path="/product-review"
+          element={
+            <PrivateRoute>
+              <ProductReview />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/routine"
+          element={
+            <PrivateRoute>
+              <RoutinePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/quiz"
+          element={
+            <PrivateRoute>
+              <QuizIntroPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/quiz-page"
+          element={
+            <PrivateRoute>
+              <QuizPage />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

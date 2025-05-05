@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "user": {
+      "id": 101,
+      "name": "Emily Johnson",
+      "role": "Skincare Blogger",
+      "profilePic": "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    "product_name": "CeraVe Moisturizing Cream",
+    "category": "Skincare",
+    "description": "A rich, non-greasy cream that provides 24-hour hydration and restores the protective skin barrier with ceramides and hyaluronic acid.",
+    "price": 18.99,
+    "rating": 4.8,
+    "review_count": 250,
+    "image_url": "https://static.beautytocare.com/cdn-cgi/image/f=auto/media/catalog/product//c/e/cerave-moisturizing-cream-dry-to-very-dry-skin.jpg"
+  },
+  {
+    "id": 2,
+    "user": {
+      "id": 102,
+      "name": "Mark Smith",
+      "role": "Product Manager",
+      "profilePic": "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    "product_name": "Cetaphil Gentle Skin Cleanser",
+    "category": "Skincare",
+    "description": "A mild, soap-free formula that cleanses without irritation and preserves the skin's natural moisture balance.",
+    "price": 12.49,
+    "rating": 4.7,
+    "review_count": 350,
+    "image_url": "https://static.beautytocare.com/cdn-cgi/image/width=1600,height=1600,f=auto/media/catalog/product//c/e/cetaphil-gentle-skin-cleanser-dry-sensitive-skin-237ml_3_1.jpg"
+  },
+  {
+    "id": 3,
+    "user": {
+      "id": 103,
+      "name": "Dishi Sharma",
+      "role": "Chief Finance Officer",
+      "profilePic": "https://randomuser.me/api/portraits/women/68.jpg"
+    },
+    "product_name": "Deconstruct Brightening Sunscreen SPF 50",
+    "category": "Skincare",
+    "description": "A lightweight sunscreen with SPF 50 that provides broad spectrum protection and brightens dull skin with niacinamide.",
+    "price": 15.99,
+    "rating": 4.6,
+    "review_count": 180,
+    "image_url": "https://images-static.nykaa.com/media/catalog/product/5/3/5352c71DECON00000051_11.jpg?tr=w-500"
+  },
+  {
+    "id": 4,
+    "user": {
+      "id": 104,
+      "name": "Ananya Gupta",
+      "role": "Dermatologist",
+      "profilePic": "https://randomuser.me/api/portraits/women/12.jpg"
+    },
+    "product_name": "The Derma Co 1% Hyaluronic Sunscreen Aqua Gel",
+    "category": "Skincare",
+    "description": "An ultra-light sunscreen gel with SPF 50 PA++++ that hydrates and protects against UVA and UVB rays.",
+    "price": 16.50,
+    "rating": 4.5,
+    "review_count": 220,
+    "image_url": "https://cdn.grofers.com/app/assets/products/sliding_images/jpeg/64c5016f-50fd-4d7c-9e57-af434afce22f.jpg?ts=1711105986"
+  },
+  {
+    "id": 5,
+    "user": {
+      "id": 105,
+      "name": "John Doe",
+      "role": "Skincare Enthusiast",
+      "profilePic": "https://randomuser.me/api/portraits/men/45.jpg"
+    },
+    "product_name": "Neutrogena Hydro Boost Water Gel",
+    "category": "Skincare",
+    "description": "A refreshing water gel formula that absorbs quickly and provides long-lasting hydration for dry skin.",
+    "price": 20.00,
+    "rating": 4.9,
+    "review_count": 400,
+    "image_url": "https://images.ctfassets.net/bcjr30vxh6td/7L1dBnEwzelXZCrKc8P7FV/ff498b7ad151961bab4abc54130535ae/6811047-202307-carousel-1-2"
+  },
+  {
+    "id": 6,
+    "user": {
+      "id": 106,
+      "name": "Sophia Lee",
+      "role": "Beauty Influencer",
+      "profilePic": "https://randomuser.me/api/portraits/women/23.jpg"
+    },
+    "product_name": "La Roche-Posay Toleriane Double Repair Face Moisturizer",
+    "category": "Skincare",
+    "description": "A daily moisturizer with ceramides and niacinamide that provides up to 48 hours of hydration and restores the skin barrier.",
+    "price": 19.99,
+    "rating": 4.8,
+    "review_count": 300,
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ5Fclkz1Bhms29_DE47Ri-ip_IoVQSRbQzQ&s"
+  },
+  {
+    "id": 7,
+    "user": {
+      "id": 107,
+      "name": "Arjun Mehta",
+      "role": "Skincare Specialist",
+      "profilePic": "https://randomuser.me/api/portraits/men/29.jpg"
+    },
+    "product_name": "Bioderma Sensibio H2O Micellar Water",
+    "category": "Skincare",
+    "description": "A gentle micellar water that cleanses and removes makeup while soothing sensitive skin.",
+    "price": 14.50,
+    "rating": 4.7,
+    "review_count": 270,
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAPeJxqoeeqR3QeGMnt0iiJqyFZJVxL1bpzQ&s"
+  },
+  {
+    "id": 8,
+    "user": {
+      "id": 108,
+      "name": "Meera Kapoor",
+      "role": "Makeup Artist",
+      "profilePic": "https://randomuser.me/api/portraits/women/56.jpg"
+    },
+    "product_name": "Cosrx Advanced Snail 96 Mucin Power Essence",
+    "category": "Skincare",
+    "description": "A lightweight essence enriched with 96% snail mucin to repair skin damage and boost hydration.",
+    "price": 22.00,
+    "rating": 4.9,
+    "review_count": 320,
+    "image_url": "https://images-static.nykaa.com/media/catalog/product/b/6/b67c3d48809416470009_1.jpg?tr=w-500"
+  },
+  {
+    "id": 9,
+    "user": {
+      "id": 109,
+      "name": "Priya Sharma",
+      "role": "Beauty Blogger",
+      "profilePic": "https://randomuser.me/api/portraits/women/37.jpg"
+    },
+    "product_name": "Laneige Lip Sleeping Mask",
+    "category": "Skincare",
+    "description": "A leave-on lip mask that soothes and moisturizes for soft, supple lips overnight.",
+    "price": 24.00,
+    "rating": 4.8,
+    "review_count": 310,
+    "image_url": "https://luxiface.com/cdn/shop/files/Laneige-Lip-Sleeping-Mask-Berry-20g-3.jpg?v=1734787120"
+  },
+  {
+    "id": 10,
+    "user": {
+      "id": 110,
+      "name": "Ravi Kumar",
+      "role": "Dermatology Student",
+      "profilePic": "https://randomuser.me/api/portraits/men/71.jpg"
+    },
+    "product_name": "Aveeno Calm + Restore Oat Gel Moisturizer",
+    "category": "Skincare",
+    "description": "A lightweight gel moisturizer with oat and feverfew to calm sensitive skin and restore moisture balance.",
+    "price": 17.50,
+    "rating": 4.6,
+    "review_count": 200,
+    "image_url": "https://images-cdn.ubuy.co.in/6568b308c3e9a67ef207bae8-aveeno-calm-restore-oat-gel-face.jpg"
+  },
+  {
+    "id": 11,
+    "user": {
+      "id": 111,
+      "name": "Sarah Wilson",
+      "role": "Anti-Aging Expert",
+      "profilePic": "https://randomuser.me/api/portraits/women/54.jpg"
+    },
+    "product_name": "Olay Regenerist Micro-Sculpting Cream",
+    "category": "Skincare",
+    "description": "An anti-aging moisturizer that visibly reduces the appearance of wrinkles and improves skin elasticity with hyaluronic acid and amino-peptides.",
+    "price": 29.99,
+    "rating": 4.7,
+    "review_count": 500,
+    "image_url": "https://rukminim2.flixcart.com/image/850/1000/xif0q/moisturizer-cream/a/a/y/-original-imahaesq8dckmpny.jpeg?q=90&crop=false"
+  },
+  {
+    "id": 12,
+    "user": {
+      "id": 112,
+      "name": "Aditya Roy",
+      "role": "Cosmetic Scientist",
+      "profilePic": "https://randomuser.me/api/portraits/men/63.jpg"
+    },
+    "product_name": "The Ordinary Niacinamide 10% + Zinc 1%",
+    "category": "Skincare",
+    "description": "A high-strength vitamin and mineral blemish formula that reduces the appearance of pores and balances sebum activity.",
+    "price": 10.50,
+    "rating": 4.8,
+    "review_count": 600,
+    "image_url": "https://m.media-amazon.com/images/I/41dPOLDrfLL.jpg"
+  }
+]

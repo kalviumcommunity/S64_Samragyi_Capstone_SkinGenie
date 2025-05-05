@@ -5,6 +5,7 @@ const routineRoutes = require('./routes/routineRoutes');
 const userRoutes = require('./routes/userRoutes');
 const quizRoutes = require('./routes/quizRoutes');
 const productRoutes = require('./routes/productRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 const cors = require('cors');
 
 dotenv.config();
@@ -21,6 +22,7 @@ app.use('/routines', routineRoutes);
 app.use('/api', userRoutes);
 app.use('/quiz', quizRoutes);
 app.use('/products', productRoutes);
+app.use('/api/comments', commentRoutes); // Add comment routes
 
 const PORT = process.env.PORT || 8000;
 const secret = process.env.JWT_SECRET;
