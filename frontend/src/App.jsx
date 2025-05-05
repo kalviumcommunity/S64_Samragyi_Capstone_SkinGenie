@@ -8,8 +8,9 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import QuizIntroPage from './pages/QuizIntroPage';
 import RoutinePage from './pages/RoutinePage';
-import PrivateRoute from './components/PrivateRoute'; // Adjust path as needed
+import PrivateRoute from './components/PrivateRoute';
 import './App.css';
+
 function AppRouter() {
   return (
     <Router>
@@ -19,6 +20,7 @@ function AppRouter() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+
         {/* Protected routes */}
         <Route
           path="/product-review"
@@ -56,4 +58,5 @@ function AppRouter() {
     </Router>
   );
 }
+
 export default AppRouter;

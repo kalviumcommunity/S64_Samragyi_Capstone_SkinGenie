@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Navbar from '../components/Navbar'; // Import Navbar
 import '../styles/RoutinePage.css'; // Import RoutinePage CSS
+import { FaRegCalendarAlt } from 'react-icons/fa'; // Import calendar icon from react-icons
 
 const RoutinePage = () => {
     const [skintype, setSkintype] = useState(localStorage.getItem('skinType'));
@@ -8,13 +9,13 @@ const RoutinePage = () => {
     const [pmRoutine, setPmRoutine] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const currentMonth = new Date().toLocaleString('default', { month: 'long' }); // Get current month
 
     useEffect(() => {
-        console.log("Skin type retrieved from localStorage:", skintype);
-
         if (skintype) {
             const fetchRoutine = async () => {
                 try {
+                    // Start loading
                     setLoading(true);
                     setError('');
 
@@ -25,13 +26,13 @@ const RoutinePage = () => {
                         return;
                     }
 
-                    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+                    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
                     const response = await fetch(`${API_URL}/routines/${skintype}`, {
                         headers: {
                             'Authorization': `Bearer ${token}`,
-                            'Content-Type': 'application/json'
-                        }
+                            'Content-Type': 'application/json',
+                        },
                     });
 
                     if (!response.ok) {
@@ -40,15 +41,13 @@ const RoutinePage = () => {
                     }
 
                     const data = await response.json();
-                    console.log("Fetched Routine Data:", data);
 
                     setAmRoutine(data.amRoutine || []);
                     setPmRoutine(data.pmRoutine || []);
                 } catch (error) {
-                    console.error('Failed to fetch routine:', error);
                     setError(error.message);
                 } finally {
-                    setLoading(false);
+                    setLoading(false); // Stop loading
                 }
             };
 
@@ -59,63 +58,99 @@ const RoutinePage = () => {
         }
     }, [skintype]);
 
-    if (loading) return <p>Loading your routine...</p>;
-    if (error) return <p style={{ color: 'red' }}>{error}</p>;
+    // Render loading state
+    if (loading) {
+        return (
+            <div className="routine-page">
+                <Navbar />
+                <div className="routine-content">
+                    <p>Loading your routine...</p>
+                </div>
+            </div>
+        );
+    }
 
+    // Render error state
+    if (error) {
+        return (
+            <div className="routine-page">
+                <Navbar />
+                <div className="routine-content">
+                    <p style={{ color: 'red' }}>{error}</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Render routine content
     return (
         <div className="routine-page">
-            {/* Navbar Component */}
             <Navbar />
             <div className="routine-content">
-                <h1>Your Personalized Skincare Routine</h1>
+                {/* User Greeting Section */}
+                <div className="user-greeting">
+                    <h2>Here is your personalized SKINCARE ROUTINE</h2>
+                </div>
+
+                {/* Calendar Section */}
+                <div className="calendar-container">
+                    <FaRegCalendarAlt className="calendar-icon" />
+                    <span className="current-month">{currentMonth}</span>
+                </div>
+
+                {/* Skincare Routine Section */}
                 <div className="routine-container">
                     {/* AM Routine Section */}
-                    <div className="am-routine">
+                    <div className="am-routine routine-section">
                         <h2>AM Care Routine</h2>
-                        {amRoutine.length === 0 ? (
-                            <p>No AM routine available.</p>
-                        ) : (
-                            amRoutine.map(product => (
-                                <div key={product._id} className="product-card">
-                                    <h3>{product.name}</h3>
-                                    <p>{product.description}</p>
-                                    {product.image && (
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="product-image"
-                                        />
-                                    )}
-                                </div>
-                            ))
-                        )}
+                        <div className="routine-items">
+                            {amRoutine.length === 0 ? (
+                                <p>No AM routine available.</p>
+                            ) : (
+                                amRoutine.map((product) => (
+                                    <ProductCard key={product._id} product={product} />
+                                ))
+                            )}
+                        </div>
                     </div>
 
                     {/* PM Routine Section */}
-                    <div className="pm-routine">
+                    <div className="pm-routine routine-section">
                         <h2>PM Care Routine</h2>
-                        {pmRoutine.length === 0 ? (
-                            <p>No PM routine available.</p>
-                        ) : (
-                            pmRoutine.map(product => (
-                                <div key={product._id} className="product-card">
-                                    <h3>{product.name}</h3>
-                                    <p>{product.description}</p>
-                                    {product.image && (
-                                        <img
-                                            src={product.image}
-                                            alt={product.name}
-                                            className="product-image"
-                                        />
-                                    )}
-                                </div>
-                            ))
-                        )}
+                        <div className="routine-items">
+                            {pmRoutine.length === 0 ? (
+                                <p>No PM routine available.</p>
+                            ) : (
+                                pmRoutine.map((product) => (
+                                    <ProductCard key={product._id} product={product} />
+                                ))
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
 };
+
+// ProductCard Component
+const ProductCard = ({ product }) => (
+    <div className="product-card">
+        <input type="checkbox" className="product-checkbox" />
+        <div className="product-details">
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <button className="upload-after-look-button">
+                <span className="upload-icon">⬆</span> Upload After Look
+            </button>
+        </div>
+        <img
+            src={product.imageUrl}
+            alt={product.name}
+            className="product-image"
+            onError={(e) => (e.target.src = '/images/default-placeholder.png')}
+        />
+    </div>
+);
 
 export default RoutinePage;
