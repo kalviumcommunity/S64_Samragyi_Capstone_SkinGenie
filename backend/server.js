@@ -10,6 +10,7 @@ const quizRoutes = require('./routes/quizRoutes');
 const productRoutes = require('./routes/productRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const authRoutes = require('./routes/authRoutes'); // Import auth routes
+const uploadRoutes = require('./routes/upload');
 const cors = require('cors');
 
 // Load environment variables
@@ -55,6 +56,8 @@ app.use('/routines', routineRoutes);
 app.use('/api', userRoutes);
 app.use('/quiz', quizRoutes);
 app.use('/products', productRoutes);
+app.use('/uploads', express.static('uploads')); // Serve uploaded files
+app.use('/api', uploadRoutes); // File upload route
 app.use('/api/comments', commentRoutes); // Add comment routes
 
 // Start the server
