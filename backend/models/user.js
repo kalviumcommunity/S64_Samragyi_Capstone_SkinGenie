@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -19,8 +20,12 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: true,
     minlength: 6,
+    // Not required: so Google users can signup without password
+  },
+  googleId: {
+    type: String,
+    // Only set for Google users
   },
   skinType: {
     type: String,
@@ -31,8 +36,10 @@ const userSchema = new mongoose.Schema({
     ref: 'Routine'
   }]
 }, { timestamps: true });
+
+// Only hash password if it exists and is modified
 userSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) return next(); 
+  if (!this.password || !this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
@@ -41,5 +48,6 @@ userSchema.pre('save', async function (next) {
     next(err);
   }
 });
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;

@@ -31,21 +31,19 @@ function SignupPage() {
     }
     setLoading(true);
     setError('');
-  
+
     try {
       const response = await axios.post('/signup', {
         name: name.trim(),
         email: email.trim(),
         password,
       });
-  
-      // If the backend returns a token on signup:
+
       const { token } = response.data;
       if (token) {
         localStorage.setItem('token', token);
-        navigate('/quiz'); // Redirect to Quiz Intro page after signup
+        navigate('/quiz');
       } else if (response.status === 201) {
-        // If no token is returned, fallback to login page
         navigate('/login');
       }
     } catch (err) {
@@ -56,7 +54,7 @@ function SignupPage() {
     } finally {
       setLoading(false);
     }
-  };  
+  };
 
   const handleInputChange = (setter) => (e) => {
     setter(e.target.value);
@@ -123,6 +121,36 @@ function SignupPage() {
               {loading ? 'Signing up...' : 'SIGNUP'}
             </button>
           </form>
+
+          {/* Google Signup Button */}
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <a
+              href="http://localhost:8000/auth/google"
+              className="google-signup-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#fff',
+                color: '#444',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                padding: '8px 16px',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: '16px',
+                cursor: 'pointer',
+              }}
+            >
+              <img
+                src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                alt="Google icon"
+                style={{ width: 20, height: 20, marginRight: 8 }}
+              />
+              Sign up with Google
+            </a>
+          </div>
+
           <p className="login-link">
             Already have an account? <Link to="/login">Login</Link>
           </p>

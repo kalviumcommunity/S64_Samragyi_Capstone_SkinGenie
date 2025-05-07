@@ -1,11 +1,21 @@
 const jwt = require('jsonwebtoken');
 
 function authenticateToken(req, res, next) {
+  // 1. Check for session-based authentication (e.g., Passport/Google)
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
+  // Some setups only set req.user, so you may want this fallback:
+  if (req.user) {
+    return next();
+  }
+
+  // 2. Check for JWT in Authorization header
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1]; // Extract token from Bearer <token>
+  const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ message: 'Access denied. No token provided.' });
+    return res.status(401).json({ message: 'Access denied. No token or session.' });
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
@@ -20,7 +30,7 @@ function authenticateToken(req, res, next) {
       return res.status(403).json({ message: 'Failed to authenticate token.' });
     }
 
-    req.user = user; // Attach decoded token info to request
+    req.user = user;
     next();
   });
 }
