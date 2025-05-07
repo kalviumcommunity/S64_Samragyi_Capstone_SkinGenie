@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import '../styles/RoutinePage.css';
 import { FaRegCalendarAlt } from 'react-icons/fa';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const RoutinePage = () => {
     const [skintype, setSkintype] = useState(localStorage.getItem('skinType'));
@@ -20,7 +22,7 @@ const RoutinePage = () => {
 
                     const token = localStorage.getItem('token');
                     if (!token) {
-                        alert('Session expired. Please log in again.');
+                        toast.error('Session expired. Please log in again.');
                         window.location.href = '/login';
                         return;
                     }
@@ -44,6 +46,7 @@ const RoutinePage = () => {
                     setPmRoutine(data.pmRoutine || []);
                 } catch (error) {
                     setError(error.message);
+                    toast.error(error.message);
                 } finally {
                     setLoading(false);
                 }
@@ -51,7 +54,9 @@ const RoutinePage = () => {
 
             fetchRoutine();
         } else {
-            setError('User skin type not available. Please complete the skin type assessment.');
+            const errorMessage = 'User skin type not available. Please complete the skin type assessment.';
+            setError(errorMessage);
+            toast.error(errorMessage);
             setLoading(false);
         }
     }, [skintype]);
@@ -128,14 +133,33 @@ const ProductCard = ({ product }) => {
     const [uploading, setUploading] = useState(false);
     const [uploadSuccess, setUploadSuccess] = useState(false);
 
+    const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+    const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/jpg'];
+
     const handleFileChange = (e) => {
-        setSelectedFile(e.target.files[0]);
+        const file = e.target.files[0];
+
+        // Validate file type
+        if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+            toast.error('Invalid file type. Please upload a JPEG or PNG image.');
+            setSelectedFile(null);
+            return;
+        }
+
+        // Validate file size
+        if (file.size > MAX_FILE_SIZE) {
+            toast.error('File size exceeds the 5 MB limit.');
+            setSelectedFile(null);
+            return;
+        }
+
+        setSelectedFile(file);
         setUploadSuccess(false);
     };
 
     const handleUpload = async () => {
         if (!selectedFile) {
-            alert('Please select a file first.');
+            toast.error('Please select a file first.');
             return;
         }
 
@@ -155,13 +179,13 @@ const ProductCard = ({ product }) => {
             const data = await response.json();
 
             if (response.ok) {
-                alert('Upload successful!');
+                toast.success('Upload successful!');
                 setUploadSuccess(true);
             } else {
-                alert(data.message || 'Upload failed.');
+                toast.error(data.message || 'Upload failed.');
             }
         } catch (error) {
-            alert('An error occurred during upload.');
+            toast.error('An error occurred during upload.');
         } finally {
             setUploading(false);
         }
