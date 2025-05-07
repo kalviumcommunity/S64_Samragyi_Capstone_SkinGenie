@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/LoginPage.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import axios from '../axios.config';
+
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false); 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // ✅ Google OAuth token handler
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+    if (token) {
+      localStorage.setItem('token', token);
+      navigate('/quiz');
+    }
+  }, [location, navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim() || !password) {
@@ -38,6 +51,7 @@ function LoginPage() {
       setLoading(false);
     }
   };
+
   return (
     <div className="login-outer-container">
       <Navbar />
@@ -74,6 +88,37 @@ function LoginPage() {
               {loading ? 'Logging in...' : 'LOGIN'}
             </button>
           </form>
+
+          {/* Google Login Button */}
+          <div style={{ marginTop: '20px', textAlign: 'center' }}>
+            <a
+              href="http://localhost:8000/auth/google"
+              className="google-login-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#fff',
+                color: '#444',
+                border: '1px solid #ddd',
+                borderRadius: '4px',
+                padding: '8px 16px',
+                textDecoration: 'none',
+                fontWeight: 500,
+                fontSize: '16px',
+                cursor: 'pointer',
+              }}
+            >
+              <img
+                src="https://cdn4.iconfinder.com/data/icons/logos-brands-7/512/google_logo-google_icongoogle-512.png"
+                alt="Google icon"
+                style={{ width: 20, height: 20, marginRight: 8 }}
+                onError={e => { e.target.style.display = 'none'; }}
+              />
+              Login with Google
+            </a>
+          </div>
+
           <p className="signup-link">
             Don't have an account yet? <Link to="/signup">Signup</Link>
           </p>
@@ -82,4 +127,5 @@ function LoginPage() {
     </div>
   );
 }
+
 export default LoginPage;
