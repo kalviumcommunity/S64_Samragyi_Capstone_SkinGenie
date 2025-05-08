@@ -1,4 +1,3 @@
-// ProductReview.jsx
 import React, { useState, useEffect } from 'react';
 import '../styles/ProductReview.css';
 import Navbar from '../components/Navbar';
@@ -25,7 +24,7 @@ function ProductReview() {
     setSelectedProduct(null);
   };
 
-  // Refresh comments after adding a new one
+  // Refresh comments after adding, updating, or deleting a comment
   const handleCommentAdded = () => {
     setCommentsKey((prevKey) => prevKey + 1);
   };

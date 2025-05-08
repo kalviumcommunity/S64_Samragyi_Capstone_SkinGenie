@@ -89,3 +89,52 @@ exports.getCommentsByProduct = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch comments' });
   }
 };
+// Update a comment by ID (only by author)
+exports.updateComment = async (req, res) => {
+  const { id } = req.params;
+  const { comment } = req.body;
+
+  try {
+    const existingComment = await Comment.findById(id);
+    if (!existingComment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    // Only the author can update their comment
+    if (req.user.name !== existingComment.user) {
+      return res.status(403).json({ message: 'Unauthorized: You can only update your own comments.' });
+    }
+
+    existingComment.comment = comment;
+    await existingComment.save();
+
+    res.json(existingComment);
+  } catch (err) {
+    console.error('Error updating comment:', err.message);
+    res.status(500).json({ message: 'Failed to update comment' });
+  }
+};
+
+// Delete a comment by ID (only by author)
+exports.deleteComment = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const existingComment = await Comment.findById(id);
+    if (!existingComment) {
+      return res.status(404).json({ message: 'Comment not found' });
+    }
+
+    // Only the author can delete their comment
+    if (req.user.name !== existingComment.user) {
+      return res.status(403).json({ message: 'Unauthorized: You can only delete your own comments.' });
+    }
+
+    await existingComment.deleteOne();
+
+    res.json({ message: 'Comment deleted successfully' });
+  } catch (err) {
+    console.error('Error deleting comment:', err.message);
+    res.status(500).json({ message: 'Failed to delete comment' });
+  }
+};

@@ -24,3 +24,24 @@ export const addComment = async (productId, comment) => {
     throw error;
   }
 };
+
+export const updateCommentAPI = async (commentId, newCommentText) => {
+  try {
+    const response = await axios.put(`/api/comments/${commentId}`, { comment: newCommentText });
+    return response.data; // Returns the updated comment
+  } catch (error) {
+    console.error('Failed to update comment:', error);
+    throw error;
+  }
+};
+
+// Delete a comment
+export const deleteCommentAPI = async (commentId) => {
+  try {
+    const response = await axios.delete(`/api/comments/${commentId}`);
+    return response.data; // Confirms the comment deletion
+  } catch (error) {
+    console.error('Failed to delete comment:', error);
+    throw error;
+  }
+};
