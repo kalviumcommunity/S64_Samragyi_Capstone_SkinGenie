@@ -31,7 +31,7 @@ function LoginPage() {
     setLoading(true);
     setError('');
     try {
-      const response = await axios.post('/login', {
+      const response = await axios.post('/api/login', {
         email: email.trim(),
         password,
       });

@@ -33,7 +33,7 @@ function SignupPage() {
     setError('');
 
     try {
-      const response = await axios.post('/signup', {
+      const response = await axios.post('/api/signup', {
         name: name.trim(),
         email: email.trim(),
         password,
