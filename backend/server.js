@@ -21,7 +21,7 @@ const app = express();
 
 // CORS Configuration
 app.use(cors({
-    origin: 'http://localhost:5173', // Allow requests from the frontend
+    origin: ['http://localhost:5173', 'https://coruscating-crostata-b02083.netlify.app/'],
     credentials: true, // Allow cookies and credentials
 }));
 
