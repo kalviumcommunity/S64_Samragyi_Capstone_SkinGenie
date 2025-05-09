@@ -1,7 +1,5 @@
 const Comment = require('../models/Comment');
 const { body, validationResult } = require('express-validator');
-
-// Add a new comment to a product
 // Add a new comment to a product
 exports.addComment = [
   // Validation rules

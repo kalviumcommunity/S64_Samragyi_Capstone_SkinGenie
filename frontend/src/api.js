@@ -17,7 +17,7 @@ export const fetchComments = async (productId, page = 1, limit = 10) => {
 // Add a new comment to a product
 export const addComment = async (productId, comment) => {
   try {
-    const response = await axios.post(`api/comments/${productId}`, { comment });
+    const response = await axios.post(`/api/comments/${productId}`, { comment });
     return response.data; // Returns the newly added comment
   } catch (error) {
     console.error('Failed to add comment:', error);
