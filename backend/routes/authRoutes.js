@@ -11,7 +11,16 @@ router.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: 'http://localhost:5173/login' }),
   (req, res) => {
-    const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    // Include the same user information as in regular login
+    const token = jwt.sign(
+      { 
+        userId: req.user._id, 
+        name: req.user.name, 
+        email: req.user.email 
+      }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '7h' }
+    );
     res.redirect(`http://localhost:5173/login?token=${token}`);
   }
 );

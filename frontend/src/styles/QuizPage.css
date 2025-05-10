@@ -6,9 +6,10 @@
     width: 100%;
     max-width: 1000px;
     height: 500px;
-    margin: 0 auto;
+    margin-top: 50px;
     padding: 20px;
     box-sizing: border-box;
+    margin-left: 300px;
 }
 
 .quiz-container {

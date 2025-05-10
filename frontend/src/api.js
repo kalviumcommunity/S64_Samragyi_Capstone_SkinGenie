@@ -1,6 +1,17 @@
 // api.js
 import axios from './axios.config';
 
+// Get current user information
+export const getCurrentUser = async () => {
+  try {
+    const response = await axios.get('/api/users/me');
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch current user:', error);
+    throw error;
+  }
+};
+
 // Fetch comments for a specific product
 export const fetchComments = async (productId, page = 1, limit = 10) => {
   try {
