@@ -21,13 +21,23 @@ exports.addComment = [
         return res.status(400).json({ error: 'Invalid productId: Must be a number' });
       }
 
-      // Ensure req.user exists and has 'name'
-      if (!req.user || !req.user.name) {
+      // Ensure req.user exists
+      if (!req.user) {
         return res.status(401).json({ error: 'Unauthorized: User information missing' });
       }
 
-      // Use the authenticated user's name from req.user
-      const user = req.user.name;
+      // Handle different token formats (Google vs regular login)
+      let user;
+      if (req.user.name) {
+        user = req.user.name;
+      } else if (req.user.displayName) {
+        user = req.user.displayName;
+      } else if (req.user.email) {
+        // Fallback to email if name is not available
+        user = req.user.email.split('@')[0]; // Use part before @ as username
+      } else {
+        return res.status(401).json({ error: 'Unauthorized: User name missing' });
+      }
 
       // Create a new comment
       const newComment = new Comment({
@@ -99,7 +109,10 @@ exports.updateComment = async (req, res) => {
     }
 
     // Only the author can update their comment
-    if (req.user.name !== existingComment.user) {
+    // Get user identifier from different possible token formats
+    const userName = req.user.name || req.user.displayName || (req.user.email ? req.user.email.split('@')[0] : null);
+    
+    if (!userName || userName !== existingComment.user) {
       return res.status(403).json({ message: 'Unauthorized: You can only update your own comments.' });
     }
 
@@ -124,7 +137,10 @@ exports.deleteComment = async (req, res) => {
     }
 
     // Only the author can delete their comment
-    if (req.user.name !== existingComment.user) {
+    // Get user identifier from different possible token formats
+    const userName = req.user.name || req.user.displayName || (req.user.email ? req.user.email.split('@')[0] : null);
+    
+    if (!userName || userName !== existingComment.user) {
       return res.status(403).json({ message: 'Unauthorized: You can only delete your own comments.' });
     }
 
