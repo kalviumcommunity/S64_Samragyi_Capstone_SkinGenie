@@ -1,0 +1,13 @@
+total 52
+drwxr-xr-x 1 welcome 197121    0 May 12 11:57 ./
+drwxr-xr-x 1 welcome 197121    0 May  6 11:02 ../
+-rw-r--r-- 1 welcome 197121 2582 Apr 17 10:43 AboutUs.css
+-rw-r--r-- 1 welcome 197121 1980 May 12 11:57 AuthForms.css
+-rw-r--r-- 1 welcome 197121 1997 Apr 21 10:00 HomePage.css
+-rw-r--r-- 1 welcome 197121 2029 May  9 14:07 LoginPage.css
+-rw-r--r-- 1 welcome 197121 2086 Apr 24 12:27 Navbar.css
+-rw-r--r-- 1 welcome 197121 5324 May  8 16:03 ProductReview.css
+-rw-r--r-- 1 welcome 197121 1982 Apr 21 11:11 QuizIntroPage.css
+-rw-r--r-- 1 welcome 197121 2902 May  9 14:09 QuizPage.css
+-rw-r--r-- 1 welcome 197121 2764 Apr 25 09:39 RoutinePage.css
+-rw-r--r-- 1 welcome 197121 2348 May  9 14:07 SignupPage.css

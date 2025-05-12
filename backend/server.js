@@ -11,6 +11,7 @@ const productRoutes = require('./routes/productRoutes');
 const commentRoutes = require('./routes/commentRoutes');
 const authRoutes = require('./routes/authRoutes'); // Import auth routes
 const uploadRoutes = require('./routes/upload');
+const passwordResetRoutes = require('./routes/passwordResetRoutes'); // Import password reset routes
 const cors = require('cors');
 
 // Load environment variables
@@ -21,8 +22,10 @@ const app = express();
 
 // CORS Configuration
 app.use(cors({
-    origin: ['http://localhost:5173', 'https://coruscating-crostata-b02083.netlify.app/'],
+    origin: ['http://localhost:5173', 'https://coruscating-crostata-b02083.netlify.app'],
     credentials: true, // Allow cookies and credentials
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Middleware
@@ -59,6 +62,7 @@ app.use('/products', productRoutes);
 app.use('/uploads', express.static('uploads')); // Serve uploaded files
 app.use('/api', uploadRoutes); // File upload route
 app.use('/api/comments', commentRoutes); // Add comment routes
+app.use('/api/password-reset', passwordResetRoutes); // Add password reset routes
 
 // Start the server
 const PORT = process.env.PORT || 8000;
