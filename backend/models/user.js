@@ -34,7 +34,13 @@ const userSchema = new mongoose.Schema({
   recommendedRoutines: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Routine'
-  }]
+  }],
+  resetPasswordOTP: {
+    type: String
+  },
+  resetPasswordOTPExpiry: {
+    type: Date
+  }
 }, { timestamps: true });
 
 // Only hash password if it exists and is modified

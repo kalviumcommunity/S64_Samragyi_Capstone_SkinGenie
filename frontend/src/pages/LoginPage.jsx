@@ -92,7 +92,7 @@ function LoginPage() {
           {/* Google Login Button */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <a
-              href="http://localhost:8000/auth/google"
+              href="https://s64-samragyi-capstone-skingenie.onrender.com/auth/google"
               className="google-login-btn"
               style={{
                 display: 'inline-flex',
@@ -121,6 +121,9 @@ function LoginPage() {
 
           <p className="signup-link">
             Don't have an account yet? <Link to="/signup">Signup</Link>
+          </p>
+          <p className="forgot-password-link">
+            <Link to="/forgot-password">Forgot your password?</Link>
           </p>
         </div>
       </div>
