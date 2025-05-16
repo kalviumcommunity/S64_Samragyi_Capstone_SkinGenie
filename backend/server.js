@@ -25,8 +25,17 @@ app.use(cors({
     origin: ['http://localhost:5173', 'https://coruscating-crostata-b02083.netlify.app'],
     credentials: true, // Allow cookies and credentials
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept']
 }));
+
+// Add additional CORS headers for troubleshooting
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content-Type,Accept,Authorization');
+    next();
+});
 
 // Middleware
 app.use(express.json());
@@ -53,6 +62,14 @@ app.use(passport.session());
 // Load Passport Configuration
 require('./config/passport'); // Assuming you created a passport.js file in the config folder
 
+// Test route to verify server is working
+app.get('/api/test', (req, res) => {
+  res.json({ 
+    message: 'Server is running correctly',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Routes
 app.use('/auth', authRoutes); // Add authentication routes
 app.use('/routines', routineRoutes);
@@ -71,5 +88,6 @@ const secret = process.env.JWT_SECRET;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`); 
 });
+
 
 

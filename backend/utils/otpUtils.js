@@ -1,7 +1,6 @@
 const crypto = require('crypto');
 const User = require('../models/user');
 
-
 // Generate a random 6-digit OTP
 const generateOTP = () => {
   // Generate a random number between 100000 and 999999 (6 digits)
