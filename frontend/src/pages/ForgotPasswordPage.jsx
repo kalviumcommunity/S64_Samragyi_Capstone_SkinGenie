@@ -21,6 +21,7 @@ const ForgotPasswordPage = () => {
     setLoading(true);
     
     try {
+      // Send password reset request
       const response = await axios.post("/api/password-reset/request", { email });
       
       // Store userId for the next step
@@ -84,7 +85,7 @@ const ForgotPasswordPage = () => {
             <button 
               onClick={() => navigate("/reset-password")} 
               className="auth-button"
-              style={{ marginTop: "20px" }}
+              style={{ marginTop: "20px", width: "100%" }}
             >
               Continue to Reset Password
             </button>
@@ -98,5 +99,6 @@ const ForgotPasswordPage = () => {
     </div>
   );
 };
+
 
 export default ForgotPasswordPage;

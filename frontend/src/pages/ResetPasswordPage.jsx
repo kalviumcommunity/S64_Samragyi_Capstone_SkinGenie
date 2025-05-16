@@ -11,9 +11,11 @@ const ResetPasswordPage = () => {
   const [loading, setLoading] = useState(false);
   const [userId, setUserId] = useState("");
   const [step, setStep] = useState(1); // 1: OTP verification, 2: New password, 3: Success
+  const [passwordStrength, setPasswordStrength] = useState({ score: 0, label: "" });
   
   const navigate = useNavigate();
   const location = useLocation();
+  
   
   useEffect(() => {
     // Get userId from localStorage (set during the forgot password flow)
@@ -53,6 +55,35 @@ const ResetPasswordPage = () => {
     } finally {
       setLoading(false);
     }
+  };
+  
+  // Check password strength
+  const checkPasswordStrength = (password) => {
+    // Simple password strength checker
+    let score = 0;
+    let label = "";
+    
+    if (password.length >= 8) score += 1;
+    if (/[A-Z]/.test(password)) score += 1;
+    if (/[0-9]/.test(password)) score += 1;
+    if (/[^A-Za-z0-9]/.test(password)) score += 1;
+    
+    if (score === 0 || password.length < 6) {
+      label = "Weak";
+    } else if (score <= 2) {
+      label = "Medium";
+    } else {
+      label = "Strong";
+    }
+    
+    setPasswordStrength({ score, label });
+  };
+  
+  // Handle password change
+  const handlePasswordChange = (e) => {
+    const password = e.target.value;
+    setNewPassword(password);
+    checkPasswordStrength(password);
   };
   
   const handleResetPassword = async (e) => {
@@ -119,9 +150,10 @@ const ResetPasswordPage = () => {
                 <input
                   type="text"
                   id="otp"
+                  className="otp-input"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                  placeholder="Enter 6-digit code"
+                  placeholder="000000"
                   maxLength={6}
                   required
                 />
@@ -151,11 +183,22 @@ const ResetPasswordPage = () => {
                   type="password"
                   id="newPassword"
                   value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
+                  onChange={handlePasswordChange}
                   placeholder="Enter new password"
                   minLength={6}
                   required
                 />
+                <div className="password-strength">
+                  <div 
+                    className={`password-strength-bar ${passwordStrength.label.toLowerCase()}`}
+                    style={{ 
+                      width: passwordStrength.score === 0 ? '0%' : `${passwordStrength.score * 25}%` 
+                    }}
+                  ></div>
+                </div>
+                <div className="password-strength-text">
+                  {newPassword && `Password strength: ${passwordStrength.label}`}
+                </div>
               </div>
               
               <div className="form-group">
@@ -184,6 +227,11 @@ const ResetPasswordPage = () => {
         
         {step === 3 && (
           <div className="success-message">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{margin: "0 auto 20px", display: "block"}}>
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <h3 style={{color: "#2e7d32", marginBottom: "15px"}}>Password Reset Successful!</h3>
             <p>
               Your password has been reset successfully!
             </p>
