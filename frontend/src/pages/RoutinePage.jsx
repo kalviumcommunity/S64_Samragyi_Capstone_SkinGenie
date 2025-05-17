@@ -200,13 +200,14 @@ const ProductCard = ({ product }) => {
 
                 <input
                     type="file"
+                    id={`file-upload-${product._id}`}
                     accept="image/*"
                     onChange={handleFileChange}
-                    style={{ marginBottom: '8px' }}
                 />
+                <label htmlFor={`file-upload-${product._id}`}></label>
 
                 {selectedFile && (
-                    <p style={{ fontSize: '0.9em', color: '#444' }}>
+                    <p className="selected-file">
                         Selected: {selectedFile.name}
                     </p>
                 )}
@@ -216,12 +217,12 @@ const ProductCard = ({ product }) => {
                     onClick={handleUpload}
                     disabled={uploading}
                 >
-                    <span className="upload-icon">⬆</span>{' '}
+                    <span className="upload-icon">📤</span>{' '}
                     {uploading ? 'Uploading...' : 'Upload After Look'}
                 </button>
 
                 {uploadSuccess && (
-                    <p style={{ color: 'green', marginTop: '5px' }}>Uploaded successfully!</p>
+                    <p className="upload-success-message">Uploaded successfully!</p>
                 )}
             </div>
 

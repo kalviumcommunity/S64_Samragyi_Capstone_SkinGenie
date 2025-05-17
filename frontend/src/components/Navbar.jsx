@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import DarkModeToggle from './DarkModeToggle';
+import ThemeContext from '../context/ThemeContext';
 import '../styles/Navbar.css'; // Import the CSS file
 
 function Navbar() {
     const navigate = useNavigate();
+    const { darkMode } = useContext(ThemeContext);
     const menuItems = [
         { name: 'HOME', path: '/' },
         { name: 'ABOUT US', path: '/about' },
@@ -39,6 +42,7 @@ function Navbar() {
                     {isLoggedIn() && (
                         <button onClick={handleLogout} id="logout-button">LOGOUT</button>
                     )}
+                    <DarkModeToggle />
                 </div>
             </nav>
         </div>

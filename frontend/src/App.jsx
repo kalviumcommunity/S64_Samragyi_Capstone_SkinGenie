@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify styles
+import ThemeContext from './context/ThemeContext';
 import HomePage from './pages/HomePage';
 import AboutUs from './pages/AboutUs';
 import ProductReview from './pages/ProductReview';
@@ -16,8 +17,22 @@ import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 function AppRouter() {
+  const { darkMode } = useContext(ThemeContext);
+  
   return (
     <Router>
+      <ToastContainer 
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={darkMode ? "dark" : "light"}
+      />
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<HomePage />} />
