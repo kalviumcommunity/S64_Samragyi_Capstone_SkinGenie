@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "SkinGenie bruno.api",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

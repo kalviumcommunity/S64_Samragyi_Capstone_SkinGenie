@@ -6,7 +6,7 @@ SkinGenie is a smart skincare web app designed to personalize and simplify skinc
 **Key Features:**  
 
 1. **Skincare Type Quiz**  
-- 10-question intelligent quiz  
+- Question intelligent quiz  
 - Evaluates skin texture, sensitivity, habits, and environment  
 - Classifies into: Oily, Dry, Combination, Sensitive  
 - Generates tailored skincare routines  
@@ -95,3 +95,6 @@ Tasks
 - Day 6: Optimize performance metrics  
 - Day 7: Add final GitHub Project logs (10+ entries)  
 **Concepts Covered: PUT API, File uploads, Database relationships, Update/delete**
+
+**BACKEND Deployment link (via Render)**: https://s64-samragyi-capstone-skingenie.onrender.com
+**FRONTEND Deployment link (via Netlify)**: https://coruscating-crostata-b02083.netlify.app/

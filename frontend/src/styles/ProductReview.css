@@ -1,0 +1,281 @@
+body {
+  background: linear-gradient(to bottom, #ffe6f0 0%, #ffd6e0 100%);
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.community-page {
+  text-align: center;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 32px 10px 40px 10px;
+  background: transparent;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #222;
+  margin-bottom: 0.2em;
+  letter-spacing: 1px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.reviews-container {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.review-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(255, 105, 180, 0.10), 0 1.5px 4px rgba(0,0,0,0.07);
+  padding: 24px 18px;
+  width: 320px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.22s, box-shadow 0.22s;
+  cursor: pointer;
+  border: 1.5px solid #ffd6e0;
+}
+
+.review-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(255, 105, 180, 0.18), 0 3px 8px rgba(0,0,0,0.10);
+  border-color: #ffb6c1;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.profile-pic {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2.5px solid #ffb6c1;
+  background: #fff0f5;
+}
+
+.user-info h3 {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #222;
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 0.95rem;
+  color: #b85c8a;
+  margin: 0;
+  font-weight: 500;
+}
+
+.product-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin: 17px 0;
+  border: 2px solid #ffd6e0;
+  background: #fff6fa;
+}
+
+.price {
+  font-weight: bold;
+  color: #222;
+  margin-top: 10px;
+  font-size: 1.15rem;
+}
+
+.rating {
+  color: #ff69b4;
+  font-size: 1.08rem;
+  margin: 5px 0;
+  letter-spacing: 1.5px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+.comment-button {
+  background: linear-gradient(90deg, #ff69b4 60%, #ffb6c1 100%);
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.2s, box-shadow 0.2s;
+  margin-top: 10px;
+  box-shadow: 0 2px 10px rgba(255,182,193,0.12);
+}
+
+.comment-button:hover {
+  background: linear-gradient(90deg, #d72660 60%, #ffb6c1 100%);
+  box-shadow: 0 6px 16px rgba(255,182,193,0.18);
+}
+
+/* Enlarged Card */
+.enlarged-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 28px rgba(255, 105, 180, 0.13), 0 3px 10px rgba(0,0,0,0.13);
+  padding: 38px 24px 30px 24px;
+  width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  border: 2px solid #ffd6e0;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff69b4;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(255,182,193,0.12);
+  transition: background 0.2s;
+}
+.close-button:hover {
+  background: #d72660;
+}
+
+/* Comment Form */
+form {
+  margin: 20px 0 10px 0;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  width: 100%;
+  text-align: left;
+  font-weight: 500;
+  color: #d72660;
+  margin-bottom: 4px;
+}
+
+form textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 10px;
+  border: 1.5px solid #ff69b4;
+  border-radius: 10px;
+  font-size: 1rem;
+  resize: vertical;
+  background: #fff6fa;
+  transition: border 0.2s;
+  margin-bottom: 10px;
+}
+
+form textarea:focus {
+  border-color: #d72660;
+  outline: none;
+}
+
+form button[type="submit"] {
+  background: linear-gradient(90deg, #28a745 70%, #b6fcd5 100%);
+  color: #222;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 5px;
+  transition: background 0.3s;
+}
+
+form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #218838 70%, #b6fcd5 100%);
+}
+
+form p[style*="color: red"] {
+  margin-top: 8px;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #d72660 !important;
+  font-weight: 500;
+}
+
+/* Comments List */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 12px 0;
+  width: 100%;
+  max-width: 420px;
+  text-align: left;
+}
+
+ul li {
+  background: #fff0f5;
+  border-radius: 8px;
+  margin-bottom: 7px;
+  padding: 11px 16px;
+  color: #222;
+  font-size: 1rem;
+  box-shadow: 0 1px 6px rgba(255,182,193,0.08);
+}
+
+ul li strong {
+  color: #ff69b4;
+  font-weight: 700;
+}
+
+/* Pagination Buttons */
+button[disabled] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.enlarged-card > div:last-child {
+  margin-top: 14px;
+}
+
+/* Responsive */
+@media (max-width: 650px) {
+  .enlarged-card, .review-card {
+    width: 96vw;
+    min-width: unset;
+    max-width: 99vw;
+    padding: 16px 4vw;
+  }
+  .reviews-container {
+    flex-direction: column;
+    gap: 18px;
+  }
+}

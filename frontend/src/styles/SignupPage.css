@@ -1,0 +1,118 @@
+.signup-outer-container {
+  min-height: 115vh;
+  /* Light pink background */
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: row; /* Keep image and form side by side */
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  max-width: 1000px; /* Adjust as needed */
+  width: 90%; /* Take up 90% of the available width */
+  max-height: 1000px; /* Limit the height */
+  justify-self: center;
+  margin-top: 50px;
+}
+
+.signup-image-section {
+  flex: 1;
+  background: url('/signuppic.jpeg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px; /* Ensure it takes some space */
+}
+
+.signup-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.signup-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.signup-form h2 {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.signup-form p {
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.input-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.input-container input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  padding-left: 2.5rem;
+  background-color: #f7f7f7;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  width: 1rem;
+  height: 1rem;
+}
+
+.signup-form button {
+  background-color: #000;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.signup-form button:hover {
+  background-color: #333;
+}
+
+.login-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .signup-box {
+    flex-direction: column; /* Stack image and form vertically */
+    width: 95%; /* Take up more width on smaller screens */
+    max-height: none; /* Remove max height */
+  }
+
+  .signup-image-section {
+    min-height: 150px; /* Adjust image section height */
+  }
+}

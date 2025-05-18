@@ -1,0 +1,25 @@
+meta {
+  name: Create Product
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8000/products
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Heimish All Clean Balm",
+    "description": "A brightening clean balm to give your skin a radiant glow.",
+    "category": "cleanser",
+    "imageUrl": "https://m.media-amazon.com/images/I/611Ri20UY1L._SX466_.jpg",
+    "timeOfDay": "AM",
+    "skinTypes": ["Dry", "Normal", "Oily"],
+    "concerns": ["Dullness", "Uneven Skin Tone", "Dryness"],
+    "order": 1
+  }
+  
+}
