@@ -124,6 +124,18 @@ h1, h2, h3, h4, h5, h6, p, span, a, label, li {
   color: #ff69b4 !important;
 }
 
+/* Ensure skincare tip content is visible in dark mode */
+.dark-mode .scratch-card-content,
+.dark-mode .scratch-card-content h3,
+.dark-mode .fact-section,
+.dark-mode .tip-section,
+.dark-mode .fact-section h4,
+.dark-mode .tip-section h4,
+.dark-mode .fact-section p,
+.dark-mode .tip-section p {
+  color: #333 !important;
+}
+
 .dark-mode form label {
   color: #d72660 !important;
 }

@@ -82,6 +82,12 @@
   position: relative;
 }
 
+/* Dark mode styles for scratch card */
+body.dark-mode .scratch-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
 .scratch-card::before {
   content: '';
   position: absolute;
@@ -116,6 +122,11 @@
   overflow-y: auto;
   animation: fadeIn 0.8s ease-in-out;
   position: relative;
+}
+
+/* Dark mode styles for scratch card content */
+body.dark-mode .scratch-card-content h3 {
+  color: #333 !important;
 }
 
 .scratch-card h3 {
@@ -156,12 +167,27 @@
   background: linear-gradient(to right, #f0f7ff, #e6f2f5);
   border-left: 4px solid #4a90e2;
   box-shadow: 0 3px 10px rgba(74, 144, 226, 0.1);
+  color: #333;
 }
 
 .tip-section {
   background: linear-gradient(to right, #f5f0ff, #f0e6ff);
   border-left: 4px solid #6c63ff;
   box-shadow: 0 3px 10px rgba(108, 99, 255, 0.1);
+  color: #333;
+}
+
+/* Dark mode styles for fact and tip sections */
+body.dark-mode .fact-section,
+body.dark-mode .tip-section {
+  color: #333 !important; /* Ensure text is dark on light backgrounds */
+}
+
+body.dark-mode .fact-section h4,
+body.dark-mode .tip-section h4,
+body.dark-mode .fact-section p,
+body.dark-mode .tip-section p {
+  color: #333 !important;
 }
 
 /* Animation classes for content reveal */
@@ -204,6 +230,11 @@ h3.visible {
   margin-bottom: 20px;
   text-align: center;
   font-weight: 500;
+}
+
+/* Dark mode styles for loading text */
+body.dark-mode .loading-text {
+  color: #b388ff;
 }
 
 .loading-dots {

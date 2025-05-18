@@ -17,6 +17,12 @@
   margin-top: 50px;
 }
 
+/* Dark mode styles for signup box */
+body.dark-mode .signup-box {
+  background: #2c3440;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
+}
+
 .signup-image-section {
   flex: 1;
   background: url('/signuppic.jpeg') center/cover no-repeat;
@@ -52,6 +58,15 @@
   color: #666;
 }
 
+/* Dark mode styles for signup form text */
+body.dark-mode .signup-form h2 {
+  color: #fff;
+}
+
+body.dark-mode .signup-form p {
+  color: #ccc;
+}
+
 .input-container {
   position: relative;
   width: 100%;
@@ -68,6 +83,13 @@
   background-color: #f7f7f7;
 }
 
+/* Dark mode styles for input fields */
+body.dark-mode .input-container input {
+  background-color: #1a1a2e;
+  border: 1px solid #444;
+  color: #fff;
+}
+
 .input-icon {
   position: absolute;
   left: 0.75rem;
@@ -76,6 +98,11 @@
   color: #999;
   width: 1rem;
   height: 1rem;
+}
+
+/* Dark mode styles for input icons */
+body.dark-mode .input-icon {
+  color: #ccc;
 }
 
 .signup-form button {
@@ -94,6 +121,16 @@
   background-color: #333;
 }
 
+/* Dark mode styles for signup button */
+body.dark-mode .signup-form button {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.dark-mode .signup-form button:hover {
+  background-color: #ff8c9a;
+}
+
 .login-link {
   margin-top: 1rem;
   font-size: 0.9rem;
@@ -102,6 +139,15 @@
 .login-link a {
   color: #007bff;
   text-decoration: none;
+}
+
+/* Dark mode styles for login link */
+body.dark-mode .login-link {
+  color: #ccc;
+}
+
+body.dark-mode .login-link a {
+  color: var(--accent-color);
 }
 
 /* Responsive adjustments for smaller screens */
