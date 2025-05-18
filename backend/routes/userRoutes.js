@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { createUser, getAllUsers, loginUser, getCurrentUser } = require('../controllers/userController'); // Import the new controller
 const { body } = require('express-validator');
-const authenticateToken = require('../middleware/authMiddleware'); // Middleware for token authentication
+const { authenticateToken } = require('../middleware/authMiddleware'); // Middleware for token authentication
 
 // Validation rules for signup and login
 const validateSignup = [
