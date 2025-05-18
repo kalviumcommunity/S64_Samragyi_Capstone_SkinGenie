@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import SkincareTip from '../components/SkincareTip';
 import '../styles/RoutinePage.css';
 import { FaRegCalendarAlt, FaFire } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -230,6 +231,7 @@ const RoutinePage = () => {
                     </div>
                 </div>
             </div>
+            <SkincareTip />
         </div>
     );
 };
