@@ -12,6 +12,7 @@ const commentRoutes = require('./routes/commentRoutes');
 const authRoutes = require('./routes/authRoutes'); // Import auth routes
 const uploadRoutes = require('./routes/upload');
 const passwordResetRoutes = require('./routes/passwordResetRoutes'); // Import password reset routes
+const routineTrackerRoutes = require('./routes/routineTrackerRoutes'); // Import routine tracker routes
 const cors = require('cors');
 
 // Load environment variables
@@ -80,6 +81,7 @@ app.use('/uploads', express.static('uploads')); // Serve uploaded files
 app.use('/api', uploadRoutes); // File upload route
 app.use('/api/comments', commentRoutes); // Add comment routes
 app.use('/api/password-reset', passwordResetRoutes); // Add password reset routes
+app.use('/api/routine-tracker', routineTrackerRoutes); // Add routine tracker routes
 
 // Start the server
 const PORT = process.env.PORT || 8000;

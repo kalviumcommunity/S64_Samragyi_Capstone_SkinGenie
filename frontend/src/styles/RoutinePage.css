@@ -9,10 +9,22 @@
   padding-top: 20px;
 }
 
+/* Header Row */
+.routine-page .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.routine-page .left-spacer {
+  flex: 1;
+}
+
 /* Greeting Section */
 .routine-page .user-greeting {
+  flex: 2;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .routine-page .user-greeting h2 {
@@ -36,14 +48,12 @@
 }
 
 .routine-page .calendar-container {
-  position: absolute;
-  top: 10px;
-  right: 0;
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 16px;
   color: #555;
+  margin-right: 25px;
 }
 
 .routine-page .calendar-icon {
@@ -201,6 +211,87 @@
   color: #00a854;
   margin-top: 5px;
   font-size: 0.9em;
+}
+
+/* Date and Streak Container */
+.routine-page .date-streak-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+
+/* Streak Counter */
+.routine-page .streak-counter {
+  display: inline-flex;
+  align-items: center;
+  background-color: #fff3e0;
+  border-radius: 20px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: pulse 2s infinite;
+}
+
+.routine-page .streak-flame {
+  font-size: 24px;
+  margin-right: 8px;
+  color: #ff6d00;
+}
+
+.routine-page .streak-count {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6d00;
+  margin-right: 5px;
+}
+
+.routine-page .streak-text {
+  font-size: 16px;
+  color: #555;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .routine-page .header-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .routine-page .left-spacer {
+    display: none;
+  }
+  
+  .routine-page .user-greeting {
+    order: 1;
+    margin-bottom: 15px;
+  }
+  
+  .routine-page .date-streak-container {
+    order: 2;
+    justify-content: center;
+  }
+}
+
+/* Dark mode support */
+body.dark-mode .routine-page .streak-counter {
+  background-color: #3e2723;
+}
+
+body.dark-mode .routine-page .streak-text {
+  color: #e0e0e0;
 }
 
 /* Isolated styles to avoid affecting Navbar */

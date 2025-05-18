@@ -16,8 +16,29 @@ function LoginPage() {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const token = params.get('token');
+    const userId = params.get('userId');
+    
     if (token) {
       localStorage.setItem('token', token);
+      
+      // If userId is provided in the URL, store it
+      if (userId) {
+        localStorage.setItem('userId', userId);
+      } else {
+        // Try to extract userId from the JWT token
+        try {
+          const tokenParts = token.split('.');
+          if (tokenParts.length === 3) {
+            const payload = JSON.parse(atob(tokenParts[1]));
+            if (payload.userId) {
+              localStorage.setItem('userId', payload.userId);
+            }
+          }
+        } catch (error) {
+          console.error('Error extracting user ID from token:', error);
+        }
+      }
+      
       navigate('/quiz');
     }
   }, [location, navigate]);
@@ -37,9 +58,12 @@ function LoginPage() {
       });
 
       if (response.status === 200) {
-        const { token } = response.data;
+        const { token, user } = response.data;
         if (token) {
           localStorage.setItem('token', token); // Store JWT token
+        }
+        if (user && user.id) {
+          localStorage.setItem('userId', user.id); // Store user ID
         }
         navigate('/quiz'); // Redirect after login
       }      
