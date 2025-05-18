@@ -5,7 +5,7 @@ const {
   createRoutine,
   updateRoutine
 } = require('../controllers/routineController');
-const authenticateToken = require('../middleware/authMiddleware');
+const { authenticateToken } = require('../middleware/authMiddleware');
 
 // Route to get routines by skin type - protected
 router.get('/:skinType', authenticateToken, getRoutinesBySkinType);

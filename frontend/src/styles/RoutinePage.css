@@ -9,10 +9,22 @@
   padding-top: 20px;
 }
 
+/* Header Row */
+.routine-page .header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.routine-page .left-spacer {
+  flex: 1;
+}
+
 /* Greeting Section */
 .routine-page .user-greeting {
+  flex: 2;
   text-align: center;
-  margin-bottom: 30px;
 }
 
 .routine-page .user-greeting h2 {
@@ -33,7 +45,6 @@
   max-width: 1200px;
   text-align: center;
   position: relative;
-  padding-top: 50px; /* Add padding to make room for the date-streak container */
 }
 
 .routine-page .calendar-container {
@@ -208,10 +219,7 @@
   justify-content: flex-end;
   align-items: center;
   gap: 20px;
-  position: absolute;
-  top: 10px;
-  right: 20px;
-  left: 50px;
+  flex: 1;
 }
 
 /* Streak Counter */
@@ -257,17 +265,23 @@
 
 /* Media query for mobile devices */
 @media (max-width: 768px) {
-  .routine-page .date-streak-container {
-    position: static;
-    flex-direction: row;
-    justify-content: center;
+  .routine-page .header-row {
+    flex-direction: column;
     gap: 15px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+  }
+  
+  .routine-page .left-spacer {
+    display: none;
   }
   
   .routine-page .user-greeting {
-    margin-top: 60px;
+    order: 1;
+    margin-bottom: 15px;
+  }
+  
+  .routine-page .date-streak-container {
+    order: 2;
+    justify-content: center;
   }
 }
 
@@ -289,4 +303,3 @@ body.dark-mode .routine-page .streak-text {
   position: relative;
   z-index: 0;
 }
-

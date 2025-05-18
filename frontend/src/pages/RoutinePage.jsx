@@ -171,20 +171,24 @@ const RoutinePage = () => {
         <div className="routine-page">
             <Navbar />
             <div className="routine-content">
-                <div className="user-greeting">
-                    <h2>Here is your personalized SKINCARE ROUTINE</h2>
-                </div>
-
-                <div className="date-streak-container">
-                    <div className="calendar-container">
-                        <FaRegCalendarAlt className="calendar-icon" />
-                        <span className="current-month">{currentMonth}</span>
+                <div className="header-row">
+                    <div className="left-spacer"></div>
+                    
+                    <div className="user-greeting">
+                        <h2>Here is your personalized SKINCARE ROUTINE</h2>
                     </div>
                     
-                    <div className="streak-counter">
-                        <FaFire className="streak-flame" />
-                        <span className="streak-count">{streak || 1}</span>
-                        <span className="streak-text">day streak!</span>
+                    <div className="date-streak-container">
+                        <div className="calendar-container">
+                            <FaRegCalendarAlt className="calendar-icon" />
+                            <span className="current-month">{currentMonth}</span>
+                        </div>
+                        
+                        <div className="streak-counter">
+                            <FaFire className="streak-flame" />
+                            <span className="streak-count">{streak || 1}</span>
+                            <span className="streak-text">day streak!</span>
+                        </div>
                     </div>
                 </div>
 
