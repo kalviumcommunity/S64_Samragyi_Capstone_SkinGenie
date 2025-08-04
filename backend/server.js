@@ -48,10 +48,10 @@ app.use(
       resave: false,
       saveUninitialized: false,
       cookie: {
-        domain: 'localhost', // 👈 Add this line
-        secure: false,
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
         httpOnly: true,
-        sameSite: 'lax',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax', // Allow cross-site cookies in production
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
       },
     })
   );

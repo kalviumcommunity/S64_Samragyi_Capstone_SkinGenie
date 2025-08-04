@@ -125,7 +125,7 @@ function SignupPage() {
           {/* Google Signup Button */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <a
-              href="https://s64-samragyi-capstone-skingenie.onrender.com/auth/google"
+              href={`${import.meta.env.VITE_API_URL}/auth/google`}
               className="google-signup-btn"
               style={{
                 display: 'inline-flex',

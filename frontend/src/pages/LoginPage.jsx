@@ -17,6 +17,27 @@ function LoginPage() {
     const params = new URLSearchParams(location.search);
     const token = params.get('token');
     const userId = params.get('userId');
+    const authError = params.get('error');
+    
+    // Handle authentication errors
+    if (authError) {
+      let errorMessage = 'Authentication failed';
+      switch (authError) {
+        case 'auth_failed':
+          errorMessage = 'Google authentication failed. Please try again.';
+          break;
+        case 'no_user':
+          errorMessage = 'Unable to retrieve user information from Google.';
+          break;
+        case 'callback_error':
+          errorMessage = 'An error occurred during authentication. Please try again.';
+          break;
+        default:
+          errorMessage = 'Authentication failed. Please try again.';
+      }
+      setError(errorMessage);
+      return;
+    }
     
     if (token) {
       localStorage.setItem('token', token);
@@ -36,6 +57,8 @@ function LoginPage() {
           }
         } catch (error) {
           console.error('Error extracting user ID from token:', error);
+          setError('Invalid authentication token. Please try logging in again.');
+          return;
         }
       }
       
@@ -116,7 +139,7 @@ function LoginPage() {
           {/* Google Login Button */}
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
             <a
-              href="https://s64-samragyi-capstone-skingenie.onrender.com/auth/google"
+              href={`${import.meta.env.VITE_API_URL}/auth/google`}
               className="google-login-btn"
               style={{
                 display: 'inline-flex',
